@@ -1,13 +1,5 @@
-MEU REFÚGIO — VERSÃO AZUL 6
-
-IMPORTANTE: Extraia o ZIP e envie TODOS os arquivos para a raiz do repositório GitHub.
-Não envie o arquivo ZIP sem extrair.
-
-TESTE A NOVA VERSÃO SEM CACHE ANTIGO:
-https://lewris.github.io/meu-refugio/inicio-azul.html
-
-As categorias agora usam links HTML reais para arquivos com nomes novos, por exemplo oracoes-azul.html. Isso contorna páginas antigas armazenadas em cache. index.html e os nomes antigos também foram atualizados para compatibilidade.
-
-O service worker v6 usa prioridade para a rede quando há conexão e mantém cópias das páginas para uso offline.
-
-Atenção: se uma instalação anterior do site continuar mostrando a versão antiga, abra o novo endereço no navegador e atualize; evite limpar dados do site sem antes copiar intenções pessoais importantes.
+MEU REFÚGIO — VERSÃO 7 (AZUL)
+Inclui 9 novenas com nove dias, intenções e progresso individual.
+Inclui 6 terços e devoções com roteiros e indicações sobre adaptações.
+Para atualizar: envie todos os arquivos para a raiz do GitHub Pages.
+Acesse inicio-azul.html. Os dados pessoais permanecem no navegador local.

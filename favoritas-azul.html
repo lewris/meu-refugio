@@ -27,7 +27,15 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
 .back{display:inline-block;text-decoration:none;border:0;background:transparent;color:var(--green);padding:0 0 12px;font-weight:700}.hidden{display:none!important}.verse{font:italic 18px Georgia,serif;color:var(--green);line-height:1.6}.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#17375e;color:white;padding:10px 16px;border-radius:22px;font-size:13px;opacity:0;transition:.2s;z-index:10}.toast.show{opacity:1}
 @media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr)}main{padding:18px 14px 100px}.greeting h1{font-size:27px}.tile{min-height:112px;padding:13px}.brand{font-size:22px}.tabs a{min-width:0;flex:1;padding:6px 2px}}
 </style>
-</head>
+<style>
+.dev-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.dev-card{display:flex;flex-direction:column;gap:8px;text-align:left;background:#fff;border:1px solid #dce5f2;border-radius:16px;padding:17px;color:#1b3659;min-height:150px;cursor:pointer;box-shadow:0 2px 10px #1b365910}
+.dev-card:hover,.dev-card:focus-visible{border-color:#3975b4;background:#f5f9ff;outline:2px solid #a6c5e5;outline-offset:1px}
+.dev-card strong{font-size:15px}.dev-card small{color:#687e96;line-height:1.5}.dev-emoji{font-size:24px}
+.dev-link{font-size:12px;color:#245f9b;font-weight:750;margin-top:auto}
+.dev-detail{margin-top:16px}.dev-detail .reading{white-space:pre-line}
+@media(max-width:540px){.dev-grid{grid-template-columns:1fr}.dev-card{min-height:130px}}
+</style></head>
 <body>
 <header><div class="top"><div><div class="brand">Meu Refúgio</div><div class="sub">Um espaço para estar com Deus</div></div><div class="header-actions"><button id="installBtn" class="hidden">Instalar</button></div></div></header>
 <main>
@@ -48,9 +56,25 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
 </section>
 
 <section id="traditional" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Orações tradicionais</h2><p class="panel-intro">Orações para acompanhar sua caminhada diária.</p><div id="traditionalList" class="list"></div></section>
-<section id="rosary" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Santo Terço</h2><p class="panel-intro">Um roteiro simples para rezar o Terço. Escolha o conjunto de mistérios correspondente ao dia.</p><label for="mysteryDay">Dia da semana</label><select id="mysteryDay" onchange="renderMysteries()"><option value="sun">Domingo</option><option value="mon">Segunda-feira</option><option value="tue">Terça-feira</option><option value="wed">Quarta-feira</option><option value="thu">Quinta-feira</option><option value="fri">Sexta-feira</option><option value="sat">Sábado</option></select><div id="mysteries" class="reading"></div><div class="reading"><h3>Como começar</h3>1. Faça o sinal da cruz e ofereça o Terço por suas intenções.\n2. Reze o Creio, um Pai-Nosso e três Ave-Marias.\n3. Anuncie cada mistério e faça uma breve meditação.\n4. Em cada dezena: um Pai-Nosso, dez Ave-Marias e um Glória ao Pai.\n5. Ao terminar as cinco dezenas, reze a Salve-Rainha.</div><div class="actions"><button class="primary" onclick="openPrayer('Creio')">Abrir o Credo</button><button class="secondary" onclick="openPrayer('Salve-Rainha')">Salve-Rainha</button></div></section>
+<section id="rosary" class="panel"><a class="back" href="inicio-azul.html">← Início</a>
+<h2>Terços e devoções</h2><p class="panel-intro">Além do Santo Terço mariano, encontre outros roteiros de oração. Algumas devoções usam contas ou sequências diferentes do rosário tradicional.</p>
+<div id="chapletCards" class="dev-grid"></div>
+<div id="chapletDetail" class="dev-detail hidden">
+<button class="back" type="button" onclick="closeChaplet()">← Todos os terços</button>
+<h2 id="chapletTitle"></h2><div id="chapletReading" class="reading"></div>
+</div></section>
 <section id="saints" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Orações aos santos</h2><p class="panel-intro">A devoção aos santos é um pedido de intercessão; a oração é dirigida a Deus.</p><div id="saintsList" class="list"></div></section>
-<section id="novena" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Minha novena</h2><p class="panel-intro">Use este espaço para acompanhar uma novena. Você pode registrar o dia em que está e sua intenção. O texto abaixo é uma oração simples para cada dia, não substitui o roteiro próprio de uma novena aprovada.</p><label>Nome da novena</label><input id="novenaName" placeholder="Ex.: Novena de Nossa Senhora..."><label>Dia atual (1 a 9)</label><input id="novenaDay" type="number" min="1" max="9" value="1"><label>Intenção</label><textarea id="novenaIntent" placeholder="Escreva sua intenção..."></textarea><div class="reading" id="novenaText">Deus de bondade, neste dia da minha novena, apresento a Ti minha intenção. Dá-me fé para confiar, paciência para esperar e generosidade para acolher tua vontade. Pela intercessão de Maria e de todos os santos, acompanha-me. Amém.</div><div class="actions"><button class="primary" onclick="saveNovena()">Salvar progresso</button><button class="secondary" onclick="nextNovena()">Avançar um dia</button></div></section>
+<section id="novena" class="panel"><a class="back" href="inicio-azul.html">← Início</a>
+<h2>Biblioteca de Novenas</h2><p class="panel-intro">Escolha uma devoção, acompanhe seus nove dias e registre sua intenção. Os textos desta coleção são roteiros devocionais originais, inspirados em cada devoção; não são transcrições de novenas oficiais.</p>
+<div id="novenaCards" class="dev-grid"></div>
+<div id="novenaDetail" class="dev-detail hidden">
+<button class="back" type="button" onclick="closeDevNovena()">← Todas as novenas</button>
+<h2 id="devNovenaTitle"></h2><p id="devNovenaSubtitle" class="panel-intro"></p>
+<label for="devNovenaDay">Dia da novena</label><select id="devNovenaDay" onchange="renderDevNovenaDay()"></select>
+<div id="devNovenaReading" class="reading"></div>
+<label for="devNovenaIntent">Minha intenção (salva neste aparelho)</label><textarea id="devNovenaIntent" placeholder="Escreva sua intenção pessoal..."></textarea>
+<div class="actions"><button type="button" class="primary" onclick="saveDevNovena()">Salvar meu progresso</button><button type="button" class="secondary" onclick="advanceDevNovena()">Próximo dia</button></div>
+</div></section>
 <section id="bible" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Bíblia e reflexões</h2><p class="panel-intro">Pequenos trechos para ler na Bíblia e levar para o seu dia.</p><div id="bibleList" class="list"></div></section>
 <section id="personal" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Minhas intenções</h2><p class="panel-intro">Registre aqui pessoas, pedidos e agradecimentos. Este conteúdo fica salvo neste aparelho.</p><label>Minha intenção</label><textarea id="intentText" placeholder="Senhor, hoje quero colocar em tuas mãos..."></textarea><button class="primary" onclick="addIntent()">Guardar intenção</button><div class="section-title"><h2>Minhas anotações</h2><span class="muted">Privadas neste aparelho</span></div><div id="intentList" class="list"></div></section>
 <section id="reader" class="panel"><button class="back" onclick="backFromReader()">← Voltar</button><div id="readerContent" class="reading"></div><div class="actions"><button class="secondary" id="favoriteBtn" onclick="toggleFavorite()">☆ Salvar nos favoritos</button></div></section>
@@ -124,7 +148,7 @@ function updateFavButton(){let fav=getFavs().some(x=>x.title===currentTitle);doc
 function getFavs(){return JSON.parse(localStorage.getItem("prayerFavs")||"[]")}
 function toggleFavorite(){let f=getFavs().filter(x=>x.title!==currentTitle);if(!getFavs().some(x=>x.title===currentTitle))f.push({title:currentTitle,text:currentText});localStorage.setItem("prayerFavs",JSON.stringify(f));updateFavButton();toast("Favoritos atualizados")}
 function renderList(id,obj,from){document.getElementById(id).innerHTML=Object.entries(obj).map(([k,v])=>`<div class="item"><button onclick="showReader('${jsq(k)}','${jsq(v)}','${from}')">${escapeHtml(k)}</button><span>›</span></div>`).join("")}
-function renderMysteries(){let day=document.getElementById("mysteryDay").value;document.getElementById("mysteries").innerHTML="<h3>Mistérios do dia</h3>"+mysteries[day].map((m,i)=>(i+1)+". "+m).join("\n")}
+function renderMysteries(){if(!document.getElementById("mysteryDay"))return;let day=document.getElementById("mysteryDay").value;document.getElementById("mysteries").innerHTML="<h3>Mistérios do dia</h3>"+mysteries[day].map((m,i)=>(i+1)+". "+m).join("\n")}
 function openReflection(){showReader("Meditação — João 15,9","“Permanecei no meu amor.”\n\nJesus não pede que você tenha uma rotina perfeita, mas que permaneça perto dele. Um momento sincero de oração, mesmo breve, pode ser um começo.\n\nPara refletir: como posso permanecer no amor de Deus nas pequenas escolhas de hoje?","home")}
 function renderBible(){document.getElementById("bibleList").innerHTML=bible.map((b,i)=>`<div class="item"><button onclick="showReader('${jsq(b[0])}','${jsq(b[1]+'\\n\\n'+b[2])}','bible')"><b>${escapeHtml(b[0])}</b><br><span class="muted">${escapeHtml(b[1])}</span></button><span>›</span></div>`).join("")}
 function renderIntents(){let a=JSON.parse(localStorage.getItem("myIntents")||"[]");document.getElementById("intentList").innerHTML=a.length?a.map((x,i)=>`<div class="item"><div style="white-space:pre-wrap;flex:1;font-size:14px">${escapeHtml(x)}</div><button class="smallbtn" onclick="deleteIntent(${i})">Excluir</button></div>`).join(""):'<p class="muted">Suas intenções guardadas aparecerão aqui.</p>'}
@@ -139,7 +163,69 @@ function toast(t){let e=document.getElementById("toast");e.textContent=t;e.class
 renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();
 activatePage(window.PORTAL_PAGE || "home");
 let nv=JSON.parse(localStorage.getItem("myNovena")||"null");if(nv){document.getElementById("novenaName").value=nv.name||"";document.getElementById("novenaDay").value=nv.day||1;document.getElementById("novenaIntent").value=nv.intent||""}
-if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v6.js",{updateViaCache:"none"}).catch(()=>{}))}
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v7.js",{updateViaCache:"none"}).catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
+</script>
+
+<script>
+const DEV_NOVENAS=[{"id": "0", "title": "São Miguel Arcanjo", "subtitle": "Proteção e confiança em Deus", "prayer": "São Miguel Arcanjo, servo fiel do Senhor, intercedei por mim. Que eu escolha a verdade, a coragem e a paz, confiando sempre no cuidado de Deus."}, {"id": "1", "title": "Nossa Senhora", "subtitle": "Fé, esperança e entrega", "prayer": "Virgem Maria, Mãe de Jesus, acompanhai-me nesta caminhada. Ensinai-me a escutar a Palavra e a responder com fé e generosidade."}, {"id": "2", "title": "São Francisco de Assis", "subtitle": "Paz, simplicidade e caridade", "prayer": "São Francisco de Assis, intercedei por mim. Que eu reconheça a beleza da criação, cuide dos outros e escolha a paz em meus gestos."}, {"id": "3", "title": "Santa Teresinha", "subtitle": "Confiança e amor nas pequenas coisas", "prayer": "Santa Teresinha do Menino Jesus, ajudai-me a confiar em Deus e a praticar o amor nas pequenas ações de cada dia."}, {"id": "4", "title": "Sagrado Coração de Jesus", "subtitle": "Amor, misericórdia e reparação", "prayer": "Sagrado Coração de Jesus, fonte de amor e misericórdia, acolhei minha vida. Tornai meu coração mais atento, generoso e semelhante ao vosso."}, {"id": "5", "title": "São José", "subtitle": "Família, trabalho e discernimento", "prayer": "São José, guardião da Sagrada Família, intercedei por mim. Ensinai-me a trabalhar com honestidade e a cuidar das pessoas com dedicação."}, {"id": "6", "title": "Espírito Santo", "subtitle": "Sabedoria, fortaleza e discernimento", "prayer": "Vinde, Espírito Santo. Iluminai minha mente, fortalecei minha vontade e ajudai-me a reconhecer o bem e a vivê-lo com alegria."}, {"id": "7", "title": "Nossa Senhora Aparecida", "subtitle": "Esperança e cuidado materno", "prayer": "Nossa Senhora Aparecida, Mãe querida do povo brasileiro, intercedei por nossas famílias e ajudai-nos a seguir Jesus com confiança."}, {"id": "8", "title": "Santo Antônio", "subtitle": "Caridade, escuta e serviço", "prayer": "Santo Antônio, pregador do Evangelho, intercedei por mim. Que eu tenha palavras de bondade e um coração disposto a servir."}];
+const DEV_THEMES=["Abrir o coração", "Reconhecer as graças", "Crescer na confiança", "Praticar a caridade", "Buscar a paz", "Perseverar na fé", "Cuidar do próximo", "Agradecer a Deus", "Entregar e confiar"];
+const DEV_CHAPLETS=[{"title": "Santo Terço mariano", "emoji": "📿", "subtitle": "Mistérios gozosos, luminosos, dolorosos e gloriosos.", "text": "Faça o sinal da cruz. Reze o Creio, um Pai-Nosso e três Ave-Marias.\nAnuncie cada um dos cinco mistérios do dia e medite brevemente.\nEm cada dezena, reze um Pai-Nosso, dez Ave-Marias e um Glória ao Pai.\nAo final, reze a Salve-Rainha.\n\nMistérios por dia:\nSegunda e sábado — Gozosos\nTerça e sexta — Dolorosos\nQuarta e domingo — Gloriosos\nQuinta — Luminosos\n\nUse a seção de orações tradicionais para consultar os textos completos."}, {"title": "Terço da Divina Misericórdia", "emoji": "❤️", "subtitle": "Devoção à misericórdia de Jesus.", "text": "Nas contas iniciais, reze um Pai-Nosso, uma Ave-Maria e o Creio.\n\nNas contas grandes de cada dezena:\n“Eterno Pai, eu vos ofereço o Corpo e Sangue, Alma e Divindade de vosso diletíssimo Filho, Nosso Senhor Jesus Cristo, em expiação dos nossos pecados e dos do mundo inteiro.”\n\nNas dez contas pequenas de cada dezena:\n“Pela sua dolorosa Paixão, tende misericórdia de nós e do mundo inteiro.”\n\nApós cinco dezenas, reze três vezes:\n“Deus Santo, Deus Forte, Deus Imortal, tende piedade de nós e do mundo inteiro.”\n\nEsta é uma forma conhecida do Terço da Divina Misericórdia."}, {"title": "Terço de São Miguel Arcanjo", "emoji": "🛡️", "subtitle": "Também chamado Coroa Angélica.", "text": "A Coroa Angélica tradicional contempla nove saudações aos nove coros de anjos. Cada saudação é acompanhada de um Pai-Nosso e três Ave-Marias.\n\nOs nove coros são: Serafins, Querubins, Tronos, Dominações, Potestades, Virtudes, Principados, Arcanjos e Anjos.\n\nAo final, rezam-se quatro Pai-Nossos em honra de São Miguel, São Gabriel, São Rafael e do Anjo da Guarda.\n\nEsta é uma orientação resumida. As invocações próprias de cada saudação não estão transcritas aqui; consulte um roteiro tradicional completo para rezar a Coroa Angélica integralmente."}, {"title": "Terço das Sete Dores de Maria", "emoji": "🌹", "subtitle": "Meditação sobre sete momentos dolorosos da vida de Maria.", "text": "Medite, em sequência:\n1. A profecia de Simeão.\n2. A fuga para o Egito.\n3. A perda do Menino Jesus no Templo.\n4. O encontro de Maria com Jesus a caminho do Calvário.\n5. Maria junto à cruz.\n6. Maria recebe o corpo de Jesus.\n7. O sepultamento de Jesus.\n\nUma forma tradicional utiliza um Pai-Nosso e sete Ave-Marias em cada uma das sete dores. Algumas tradições incluem orações iniciais e finais próprias."}, {"title": "Terço do Espírito Santo", "emoji": "🕊️", "subtitle": "Uma proposta simples de oração pelos dons do Espírito.", "text": "Este é um roteiro devocional adaptado, não uma fórmula única oficial.\n\nComece com o sinal da cruz e a oração:\n“Vinde, Espírito Santo, iluminai nossos corações e conduzi-nos no amor de Deus. Amém.”\n\nMedite, em cada uma das sete etapas, sobre um dom do Espírito Santo:\n1. Sabedoria\n2. Entendimento\n3. Conselho\n4. Fortaleza\n5. Ciência\n6. Piedade\n7. Temor de Deus\n\nEm cada etapa, reze um Pai-Nosso e peça que esse dom frutifique em sua vida. Encerre com um Glória ao Pai."}, {"title": "Terço de São José", "emoji": "🤎", "subtitle": "Meditação sobre a vida e as virtudes de São José.", "text": "Este é um roteiro de meditação inspirado em São José, e não uma transcrição de uma coroa tradicional específica.\n\nFaça o sinal da cruz e reze um Pai-Nosso.\nEm cinco momentos, medite:\n1. A confiança de José em Deus.\n2. O cuidado com Maria.\n3. O nascimento de Jesus.\n4. A proteção da Sagrada Família.\n5. O trabalho e a vida escondida em Nazaré.\n\nApós cada meditação, reze uma Ave-Maria e peça a intercessão de São José.\nEncerre com: “São José, rogai por nós. Amém.”"}];
+let activeDevNovena=null;
+function safeDev(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderDevCards(){
+ const el=document.getElementById("novenaCards");if(!el)return;
+ el.innerHTML=DEV_NOVENAS.map(n=>'<button type="button" class="dev-card" data-novena="'+n.id+'"><span class="dev-emoji">🕯️</span><strong>Novena de '+safeDev(n.title)+'</strong><small>'+safeDev(n.subtitle)+'</small><span class="dev-link">Abrir novena →</span></button>').join("");
+ el.querySelectorAll("[data-novena]").forEach(b=>b.addEventListener("click",()=>openDevNovena(b.dataset.novena)));
+}
+function openDevNovena(id){
+ activeDevNovena=DEV_NOVENAS.find(n=>n.id===id);if(!activeDevNovena)return;
+ document.getElementById("novenaCards").classList.add("hidden");
+ document.getElementById("novenaDetail").classList.remove("hidden");
+ document.getElementById("devNovenaTitle").textContent="Novena de "+activeDevNovena.title;
+ document.getElementById("devNovenaSubtitle").textContent=activeDevNovena.subtitle;
+ const sel=document.getElementById("devNovenaDay");
+ sel.innerHTML=Array.from({length:9},(_,i)=>'<option value="'+(i+1)+'">Dia '+(i+1)+'</option>').join("");
+ const saved=JSON.parse(localStorage.getItem("devNovena_"+id)||"null");
+ sel.value=saved?.day||1;
+ document.getElementById("devNovenaIntent").value=saved?.intent||"";
+ renderDevNovenaDay();
+ document.getElementById("novenaDetail").scrollIntoView({block:"start",behavior:"smooth"});
+}
+function renderDevNovenaDay(){
+ if(!activeDevNovena)return;
+ const day=Number(document.getElementById("devNovenaDay").value);
+ const content=document.getElementById("devNovenaReading");
+ content.innerHTML="<h3>Dia "+day+" — "+safeDev(DEV_THEMES[day-1])+"</h3>"+
+ "<p>Em nome do Pai, do Filho e do Espírito Santo. Amém.</p>"+
+ "<p>"+safeDev(activeDevNovena.prayer)+"</p>"+
+ "<p>Hoje, procure "+safeDev(DEV_THEMES[day-1].toLowerCase())+" em suas escolhas. Apresente sua intenção a Deus e reserve um instante de silêncio.</p>"+
+ "<p>Reze um Pai-Nosso, uma Ave-Maria e um Glória ao Pai.</p>"+
+ "<p>Senhor, acolhei minha oração, fortalecei minha fé e ensinai-me a fazer a vossa vontade. Amém.</p>";
+}
+function saveDevNovena(){
+ if(!activeDevNovena)return;
+ localStorage.setItem("devNovena_"+activeDevNovena.id,JSON.stringify({day:Number(document.getElementById("devNovenaDay").value),intent:document.getElementById("devNovenaIntent").value}));
+ alert("Progresso salvo neste aparelho.");
+}
+function advanceDevNovena(){
+ const sel=document.getElementById("devNovenaDay");sel.value=Math.min(9,Number(sel.value)+1);renderDevNovenaDay();saveDevNovena();
+}
+function closeDevNovena(){document.getElementById("novenaDetail").classList.add("hidden");document.getElementById("novenaCards").classList.remove("hidden");activeDevNovena=null;}
+function renderChapletCards(){
+ const el=document.getElementById("chapletCards");if(!el)return;
+ el.innerHTML=DEV_CHAPLETS.map((c,i)=>'<button type="button" class="dev-card" data-chaplet="'+i+'"><span class="dev-emoji">'+c.emoji+'</span><strong>'+safeDev(c.title)+'</strong><small>'+safeDev(c.subtitle)+'</small><span class="dev-link">Ver roteiro →</span></button>').join("");
+ el.querySelectorAll("[data-chaplet]").forEach(b=>b.addEventListener("click",()=>openChaplet(Number(b.dataset.chaplet))));
+}
+function openChaplet(i){
+ const c=DEV_CHAPLETS[i];if(!c)return;
+ document.getElementById("chapletCards").classList.add("hidden");
+ document.getElementById("chapletDetail").classList.remove("hidden");
+ document.getElementById("chapletTitle").textContent=c.title;
+ document.getElementById("chapletReading").textContent=c.text;
+ document.getElementById("chapletDetail").scrollIntoView({block:"start",behavior:"smooth"});
+}
+function closeChaplet(){document.getElementById("chapletDetail").classList.add("hidden");document.getElementById("chapletCards").classList.remove("hidden");}
+renderDevCards();renderChapletCards();
 </script>
 </body></html>
