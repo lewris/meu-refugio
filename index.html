@@ -18,7 +18,7 @@ main{max-width:980px;margin:auto;padding:22px 18px 100px}.greeting{margin:6px 0 
 .daily{background:linear-gradient(130deg,#294538,#3d5d49);color:white;border-radius:20px;padding:22px;margin:18px 0;box-shadow:0 8px 22px #203b2c18}.daily small{color:#e2d2a9;letter-spacing:1.2px;text-transform:uppercase;font-weight:700}.daily h2{font:24px Georgia,serif;margin:9px 0}.daily p{line-height:1.6;color:#edf0e9;font-size:14px}.daily button{background:#e7d7b2;color:#26372e;border:0;border-radius:22px;padding:10px 16px;font-weight:700}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 0 12px}.section-title h2{font:22px Georgia,serif;margin:0}.muted{color:var(--muted);font-size:12px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tile{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:left;color:var(--ink);min-height:118px;box-shadow:0 3px 12px #3a342408}.tile .ico{font-size:23px}.tile strong{display:block;margin:8px 0 3px}.tile span:last-child{font-size:12px;color:var(--muted)}
-.panel{display:none;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}.panel.active{display:block}.panel h2{font:25px Georgia,serif;margin:0 0 6px}.panel-intro{color:var(--muted);font-size:13px;margin:0 0 16px;line-height:1.5}
+#home:not(.active){display:none}.panel{display:none;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}.panel.active{display:block}.panel h2{font:25px Georgia,serif;margin:0 0 6px}.panel-intro{color:var(--muted);font-size:13px;margin:0 0 16px;line-height:1.5}
 .list{display:grid;gap:9px}.item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fffefa}.item button{border:0;background:transparent;color:var(--green);text-align:left;font-weight:650;flex:1}.smallbtn{border:1px solid var(--line)!important;border-radius:18px!important;padding:7px 10px!important;font-size:12px!important;background:#fff!important}
 .reading{white-space:pre-line;line-height:1.8;font:16px/1.85 Georgia,serif;background:#fffefa;border:1px solid var(--line);padding:18px;border-radius:14px;margin-top:12px}.reading h3{font:22px Georgia,serif;margin:0 0 12px;color:var(--green)}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.primary,.secondary,.danger{border:0;border-radius:20px;padding:10px 15px;font-weight:650}.primary{background:var(--green);color:white}.secondary{background:#eee9dc;color:var(--green)}.danger{background:#f6e8e5;color:#8d4943}
@@ -118,7 +118,7 @@ function showPanel(id){
 }
 
 function showReader(title,text,from){previousPanel=from||"traditional";currentTitle=title;currentText=text;document.getElementById("readerContent").innerHTML="<h3>"+escapeHtml(title)+"</h3>"+escapeHtml(text).replace(/\n/g,"<br>");updateFavButton();showPanel("reader")}
-function openPrayer(name){showReader(name,prayers[name]||saints[name]||"", "traditional")}
+function openPrayer(name){showReader(name,prayers[name]||saints[name]||"", window.PORTAL_PAGE==="rosary"?"rosary":"traditional")}
 function backFromReader(){showPanel(previousPanel)}
 function updateFavButton(){let fav=getFavs().some(x=>x.title===currentTitle);document.getElementById("favoriteBtn").textContent=fav?"★ Remover dos favoritos":"☆ Salvar nos favoritos"}
 function getFavs(){return JSON.parse(localStorage.getItem("prayerFavs")||"[]")}
@@ -136,7 +136,8 @@ function nextNovena(){let d=Math.min(9,(Number(document.getElementById("novenaDa
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function jsq(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"")}
 function toast(t){let e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2200)}
-renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();activatePage(window.PORTAL_PAGE ||"home");
+renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();
+activatePage(window.PORTAL_PAGE || "home");
 let nv=JSON.parse(localStorage.getItem("myNovena")||"null");if(nv){document.getElementById("novenaName").value=nv.name||"";document.getElementById("novenaDay").value=nv.day||1;document.getElementById("novenaIntent").value=nv.intent||""}
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
