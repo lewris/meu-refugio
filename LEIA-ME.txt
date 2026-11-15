@@ -1,4 +1,9 @@
-MEU REFÚGIO — VERSÃO 8
-Novenas: nove roteiros devocionais distintos, com oração inicial própria e nove dias temáticos diferentes. São textos redigidos para o portal e não cópias verificadas de novenas oficiais.
-Terços: seis roteiros passo a passo. O Santo Terço apresenta cinco mistérios de cada grupo, com referências bíblicas e instruções de cada dezena.
-Envie todos os arquivos para a raiz do repositório GitHub Pages e abra inicio-azul.html.
+MEU REFÚGIO — VERSÃO 9 AZUL
+
+Atualizações:
+- Todos os terços têm uma explicação inicial, passo a passo para iniciantes e orações completas em painéis expansíveis.
+- O Santo Terço mantém os cinco mistérios e quatro grupos selecionáveis.
+- Bíblia e reflexões foi substituída por Homilia do dia, com links à Palavra do Dia (Vatican News) e à Liturgia Diária (Canção Nova).
+- O conteúdo externo da homilia/comentário requer internet; as orações locais continuam offline.
+- Para publicar, envie TODOS os arquivos para a raiz do GitHub Pages e abra inicio-azul.html.
+- Algumas coroas/terços seguem roteiros adaptados ou resumidos, claramente identificados.
