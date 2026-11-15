@@ -1,19 +1,20 @@
-MEU REFÚGIO — PORTAL DE ORAÇÕES
+MEU REFÚGIO — VERSÃO COM PÁGINAS SEPARADAS
 
-Conteúdo:
-- index.html: portal completo (HTML, CSS e JavaScript).
-- manifest.json: configuração para instalação como PWA.
-- sw.js: cache offline.
-- icon.svg: ícone.
+Agora cada seção é um arquivo HTML próprio:
+- index.html — Início
+- oracoes.html — Orações tradicionais
+- terco.html — Santo Terço
+- santos.html — Orações aos santos
+- novena.html — Novena
+- biblia.html — Bíblia e reflexões
+- intencoes.html — Minhas intenções
+- favoritas.html — Favoritas
 
-TESTE SIMPLES:
-Abra index.html no navegador do computador ou celular. A página e as funções principais funcionam localmente. As intenções, favoritos e progresso da novena são salvos no armazenamento local do navegador.
+ATUALIZAÇÃO NO GITHUB:
+Envie TODOS os arquivos desta pasta para a raiz do repositório. Aceite substituir os arquivos existentes quando solicitado. Não envie apenas index.html: todas as páginas e os arquivos PWA são necessários.
 
-INSTALAÇÃO E USO OFFLINE COMO PWA:
-Para que a instalação na tela inicial e o cache offline funcionem de forma confiável, publique estes arquivos em um endereço HTTPS (por exemplo, GitHub Pages) ou execute em localhost. Abra o endereço uma vez com internet, aguarde carregar e use “Instalar” se o navegador oferecer essa opção. Depois disso, o service worker mantém os arquivos essenciais disponíveis offline.
+Depois de publicar, abra o endereço principal. Os botões das seções levam a arquivos HTML diferentes, com URLs próprias. Se o navegador mostrar a versão antiga, atualize a página ou limpe o cache do site.
 
-OBSERVAÇÕES:
-- Os dados pessoais ficam no armazenamento local do navegador/aparelho. Limpar os dados do navegador pode apagá-los.
-- Não há conta, servidor ou sincronização entre aparelhos.
-- O texto das passagens bíblicas é curto e inclui referências para leitura na Bíblia. As citações devem ser conferidas na tradução bíblica que você utiliza.
-- A novena incluída é um roteiro de oração simples e adaptável, não uma novena oficial específica.
+Offline:
+Publique em HTTPS, abra cada seção ao menos uma vez com internet e permita que o service worker seja instalado. O cache inclui todas as páginas principais.
+Os dados pessoais e favoritos continuam armazenados localmente no navegador daquele aparelho.

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#243b32">
 <meta name="description" content="Seu espaço pessoal de oração católica.">
 <link rel="manifest" href="manifest.json">
-<title>Meu Refúgio — Portal de Orações</title>
+<title>Meu Refúgio — Início</title>
 <style>
 :root{--green:#243b32;--green2:#355747;--cream:#f7f4ec;--paper:#fffdf8;--gold:#b99754;--ink:#26332d;--muted:#788078;--line:#e8e2d5;--rose:#a86e69}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -63,7 +63,7 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
  <button data-tab="personal" onclick="showPanel('personal')"><span>❤️</span>Intenções</button>
  <button data-tab="favorites" onclick="showPanel('favorites')"><span>☆</span>Favoritas</button>
 </nav><div id="toast" class="toast"></div>
-<script>
+<script>window.PORTAL_PAGE="home";
 const prayers = {
 "Pai-Nosso":"Pai nosso que estais nos céus, santificado seja o vosso nome; venha a nós o vosso Reino; seja feita a vossa vontade, assim na terra como no céu. O pão nosso de cada dia nos dai hoje; perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido; e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.",
 "Ave-Maria":"Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.",
@@ -100,7 +100,7 @@ fri:["Dolorosos: a Agonia de Jesus no Horto","Dolorosos: a Flagelação de Jesus
 sat:["Gozosos: a Anunciação do Anjo a Maria","Gozosos: a Visitação de Maria a Isabel","Gozosos: o Nascimento de Jesus","Gozosos: a Apresentação de Jesus no Templo","Gozosos: a Perda e o Encontro de Jesus no Templo"]
 };
 let currentTitle="",currentText="",previousPanel="home";
-function currentPage(){return new URLSearchParams(location.search).get("pagina")||"home"}
+const PAGE_FILES={home:"index.html",traditional:"oracoes.html",rosary:"terco.html",saints:"santos.html",novena:"novena.html",bible:"biblia.html",personal:"intencoes.html",favorites:"favoritas.html"};
 function activatePage(id){
  const target=document.getElementById(id)||document.getElementById("home");
  document.querySelectorAll("main>section").forEach(s=>s.classList.remove("active"));
@@ -111,9 +111,11 @@ function activatePage(id){
  if(id==="rosary")renderMysteries();
  window.scrollTo(0,0);
 }
-function showHome(){history.pushState({page:"home"},"",location.pathname);activatePage("home")}
-function showPanel(id){history.pushState({page:id},"","?pagina="+encodeURIComponent(id));activatePage(id)}
-window.addEventListener("popstate",()=>activatePage(currentPage()));
+function showHome(){window.location.href="index.html"}
+function showPanel(id){
+ if(PAGE_FILES[id]){window.location.href=PAGE_FILES[id];return;}
+ activatePage(id);
+}
 
 function showReader(title,text,from){previousPanel=from||"traditional";currentTitle=title;currentText=text;document.getElementById("readerContent").innerHTML="<h3>"+escapeHtml(title)+"</h3>"+escapeHtml(text).replace(/\n/g,"<br>");updateFavButton();showPanel("reader")}
 function openPrayer(name){showReader(name,prayers[name]||saints[name]||"", "traditional")}
@@ -134,7 +136,7 @@ function nextNovena(){let d=Math.min(9,(Number(document.getElementById("novenaDa
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function jsq(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"")}
 function toast(t){let e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2200)}
-renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();\nactivatePage(currentPage());
+renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();\nactivatePage(window.PORTAL_PAGE || "home");
 let nv=JSON.parse(localStorage.getItem("myNovena")||"null");if(nv){document.getElementById("novenaName").value=nv.name||"";document.getElementById("novenaDay").value=nv.day||1;document.getElementById("novenaIntent").value=nv.intent||""}
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
