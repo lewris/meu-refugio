@@ -1,1 +1,1 @@
-MEU REFÚGIO V13 — Terços reformulados em HTML estático. Abra terco-azul.html. Seis terços com explicação, meditações e orações de apoio na própria página. Novenas e demais seções preservadas. Publique todos os arquivos na raiz do GitHub Pages.
+MEU REFÚGIO v14\nCada terço possui sua própria página HTML. Novas orações adicionadas à seção Orações tradicionais. Algumas são orações devocionais redigidas para o portal, não fórmulas históricas oficiais. Envie todos os arquivos à raiz do repositório e abra inicio-azul.html.\n
