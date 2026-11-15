@@ -1,5 +1,4 @@
-MEU REFÚGIO — VERSÃO 7 (AZUL)
-Inclui 9 novenas com nove dias, intenções e progresso individual.
-Inclui 6 terços e devoções com roteiros e indicações sobre adaptações.
-Para atualizar: envie todos os arquivos para a raiz do GitHub Pages.
-Acesse inicio-azul.html. Os dados pessoais permanecem no navegador local.
+MEU REFÚGIO — VERSÃO 8
+Novenas: nove roteiros devocionais distintos, com oração inicial própria e nove dias temáticos diferentes. São textos redigidos para o portal e não cópias verificadas de novenas oficiais.
+Terços: seis roteiros passo a passo. O Santo Terço apresenta cinco mistérios de cada grupo, com referências bíblicas e instruções de cada dezena.
+Envie todos os arquivos para a raiz do repositório GitHub Pages e abra inicio-azul.html.
