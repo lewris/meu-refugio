@@ -1,1 +1,1 @@
-Meu Refúgio v10 — corrigido a partir da versão 8. Terços com instruções detalhadas, mistérios por dia e orações de referência. Homilia do dia com links externos para fontes atualizadas. Publique TODOS os arquivos na raiz do GitHub Pages. Abra inicio-azul.html.
+Meu Refúgio v11: corrigida a falha que impedia a inicialização dos cartões de terços e novenas (chamadas antigas a elementos removidos). A página Homilia do dia substitui Bíblia e reflexões. Envie todos os arquivos para o GitHub Pages e abra inicio-azul.html.
