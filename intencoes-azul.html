@@ -46,7 +46,6 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
  <div class="grid">
   <a class="tile" href="oracoes-atualizadas.html"><span class="ico">🙏</span><strong>Orações tradicionais</strong><span>Orações da Igreja</span></a>
   <a class="tile" href="terco-azul.html"><span class="ico">📿</span><strong>Santo Terço</strong><span>Mistérios e roteiro</span></a>
-  <a class="tile" href="santos-azul.html"><span class="ico">🕊️</span><strong>Orações aos santos</strong><span>Devoções católicas</span></a>
   <a class="tile" href="novena-azul.html"><span class="ico">🕯️</span><strong>Novena</strong><span>Uma jornada de nove dias</span></a>
   <a class="tile" href="homilia-azul.html"><span class="ico">📖</span><strong>Homilia do dia</strong><span>Evangelho e comentário</span></a>
   <a class="tile" href="intencoes-azul.html"><span class="ico">❤️</span><strong>Minhas intenções</strong><span>Pedidos e agradecimentos</span></a>
@@ -156,7 +155,7 @@ function toast(t){let e=document.getElementById("toast");e.textContent=t;e.class
 try{renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderMysteries();}catch(e){console.warn("Legacy init:",e)}
 activatePage(window.PORTAL_PAGE || "home");
 /* As novenas usam agora seu próprio sistema de progresso por devoção. */
-if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v16.js",{updateViaCache:"none"}).catch(()=>{}))}
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v17.js",{updateViaCache:"none"}).catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
 </script>
 

@@ -1,1 +1,1 @@
-Meu Refúgio v16. Novenas: um dia por vez, botão Concluir dia, progresso local, reinício automático depois do dia 9. Removido o bloco duplicado Outras orações. A página de orações usa agora o endereço oracoes-atualizadas.html para evitar o cache antigo. Envie TODOS os arquivos do ZIP para a raiz do GitHub Pages.
+Meu Refúgio v17: removido o cartão Orações aos santos da página inicial. As orações existentes permanecem no portal. Envie todos os arquivos para a raiz do repositório.
