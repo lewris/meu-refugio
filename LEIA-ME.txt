@@ -1,1 +1,1 @@
-MEU REFÚGIO v14\nCada terço possui sua própria página HTML. Novas orações adicionadas à seção Orações tradicionais. Algumas são orações devocionais redigidas para o portal, não fórmulas históricas oficiais. Envie todos os arquivos à raiz do repositório e abra inicio-azul.html.\n
+Meu Refúgio v15. Corrigida a biblioteca de novenas: nove páginas HTML independentes, com todos os nove dias visíveis sem JavaScript. Removida a lista duplicada "Outras orações". As oito novas orações permanecem na lista principal. Envie todos os arquivos para a raiz do GitHub Pages.
