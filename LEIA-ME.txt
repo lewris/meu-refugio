@@ -1,1 +1,1 @@
-Meu Refúgio v11: corrigida a falha que impedia a inicialização dos cartões de terços e novenas (chamadas antigas a elementos removidos). A página Homilia do dia substitui Bíblia e reflexões. Envie todos os arquivos para o GitHub Pages e abra inicio-azul.html.
+Meu Refúgio v12: cartões de terços e novenas incluídos diretamente no HTML para aparecerem mesmo se houver falha na inicialização do JavaScript. Atualize todos os arquivos do repositório. Abra terco-azul.html e novena-azul.html para testar diretamente.
