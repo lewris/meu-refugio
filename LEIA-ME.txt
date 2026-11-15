@@ -1,20 +1,9 @@
-MEU REFÚGIO — VERSÃO COM PÁGINAS SEPARADAS
+MEU REFÚGIO — VERSÃO 5
 
-Agora cada seção é um arquivo HTML próprio:
-- index.html — Início
-- oracoes.html — Orações tradicionais
-- terco.html — Santo Terço
-- santos.html — Orações aos santos
-- novena.html — Novena
-- biblia.html — Bíblia e reflexões
-- intencoes.html — Minhas intenções
-- favoritas.html — Favoritas
+Navegação por links HTML reais, independente de JavaScript.
+O cache agora usa a rede primeiro para páginas, mantendo cópias offline.
 
-ATUALIZAÇÃO NO GITHUB:
-Envie TODOS os arquivos desta pasta para a raiz do repositório. Aceite substituir os arquivos existentes quando solicitado. Não envie apenas index.html: todas as páginas e os arquivos PWA são necessários.
+ATUALIZAÇÃO: envie TODOS os arquivos para a raiz do repositório GitHub.
+Se a versão antiga continuar aparecendo, faça uma atualização forçada ou remova apenas os dados em cache do site (atenção: limpar todos os dados do site pode apagar suas intenções e favoritos).
 
-Depois de publicar, abra o endereço principal. Os botões das seções levam a arquivos HTML diferentes, com URLs próprias. Se o navegador mostrar a versão antiga, atualize a página ou limpe o cache do site.
-
-Offline:
-Publique em HTTPS, abra cada seção ao menos uma vez com internet e permita que o service worker seja instalado. O cache inclui todas as páginas principais.
-Os dados pessoais e favoritos continuam armazenados localmente no navegador daquele aparelho.
+Teste diretamente: https://lewr is.github.io/meu-refugio/oracoes.html (retire o espaço de lewr is)
