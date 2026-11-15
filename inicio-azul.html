@@ -41,7 +41,7 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
 <main>
 <section id="home">
  <div class="greeting"><div class="eyebrow">Paz para a sua caminhada</div><h1>Um momento com Deus.</h1><p>Não precisa ser perfeito. Apenas comece, com o coração disponível.</p></div>
- <div class="daily"><small>✦ Palavra para hoje</small><h2 id="dailyTitle">Permanecei no meu amor</h2><p id="dailyVerse">“Permanecei no meu amor.” — João 15,9</p><button onclick="window.location.href=\'homilia-azul.html\'">Ver homilia do dia</button></div>
+ <div class="daily"><small>✦ Palavra para hoje</small><h2 id="dailyTitle">Permanecei no meu amor</h2><p id="dailyVerse">“Permanecei no meu amor.” — João 15,9</p></div>
  <div class="section-title"><h2>Seu momento de oração</h2><span class="muted">Escolha por onde começar</span></div>
  <div class="grid">
   <a class="tile" href="oracoes-atualizadas.html"><span class="ico">🙏</span><strong>Orações tradicionais</strong><span>Orações da Igreja</span></a>
@@ -155,7 +155,7 @@ function toast(t){let e=document.getElementById("toast");e.textContent=t;e.class
 try{renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderMysteries();}catch(e){console.warn("Legacy init:",e)}
 activatePage(window.PORTAL_PAGE || "home");
 /* As novenas usam agora seu próprio sistema de progresso por devoção. */
-if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v18.js",{updateViaCache:"none"}).catch(()=>{}))}
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v19.js",{updateViaCache:"none"}).catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
 </script>
 
