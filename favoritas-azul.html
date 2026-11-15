@@ -35,7 +35,7 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
 .dev-link{font-size:12px;color:#245f9b;font-weight:750;margin-top:auto}
 .dev-detail{margin-top:16px}.dev-detail .reading{white-space:pre-line}
 @media(max-width:540px){.dev-grid{grid-template-columns:1fr}.dev-card{min-height:130px}}
-</style><style>.v8step{padding:14px 0;border-bottom:1px solid #dce5f2}.v8step:last-child{border-bottom:0}.v8step h3{font-size:18px!important;margin:0 0 8px!important;color:#1e4f83}.v8step p{font:15px/1.65 system-ui,sans-serif;margin:0}.dev-detail .reading{white-space:normal}</style></head>
+</style><style>.v8step{padding:14px 0;border-bottom:1px solid #dce5f2}.v8step:last-child{border-bottom:0}.v8step h3{font-size:18px!important;margin:0 0 8px!important;color:#1e4f83}.v8step p{font:15px/1.65 system-ui,sans-serif;margin:0}.dev-detail .reading{white-space:normal}</style><style>.terco-guide{background:#f0f6ff;border:1px solid #cbdcf0;padding:18px;border-radius:15px;margin:0 0 18px;font:15px/1.7 system-ui,sans-serif}.terco-guide h3{font:21px Georgia,serif;color:#164878}.terco-guide details{background:white;border:1px solid #dce5f2;border-radius:10px;padding:10px;margin-top:10px}.terco-guide summary{cursor:pointer;font-weight:700}.terco-guide details p{white-space:pre-line}</style></head>
 <body>
 <header><div class="top"><div><div class="brand">Meu Refúgio</div><div class="sub">Um espaço para estar com Deus</div></div><div class="header-actions"><button id="installBtn" class="hidden">Instalar</button></div></div></header>
 <main>
@@ -75,7 +75,7 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
 <label for="devNovenaIntent">Minha intenção (salva neste aparelho)</label><textarea id="devNovenaIntent" placeholder="Escreva sua intenção pessoal..."></textarea>
 <div class="actions"><button type="button" class="primary" onclick="v8SaveNovena()">Salvar meu progresso</button><button type="button" class="secondary" onclick="v8AdvanceNovena()">Próximo dia</button></div>
 </div></section>
-<section id="bible" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Homilia do dia</h2><p class="panel-intro">Acompanhe o Evangelho e um comentário espiritual correspondente à data de hoje.</p><div class="reading" style="white-space:normal"><h3 id="homiliaDate">Hoje</h3><p>Reserve alguns minutos para ler o Evangelho e refletir sobre a Palavra de Deus. O Vatican News publica a Palavra do Dia com comentários de Papas; a Canção Nova disponibiliza a liturgia diária.</p><p><strong>Para acessar o conteúdo atualizado, é necessária conexão com a internet.</strong> As demais orações do portal continuam disponíveis offline.</p><div class="actions"><a class="primary" id="homiliaLink" target="_blank" rel="noopener noreferrer" href="https://www.vaticannews.va/pt/palavra-do-dia.html">Ler Palavra e comentário de hoje</a><a class="secondary" target="_blank" rel="noopener noreferrer" href="https://liturgia.cancaonova.com/pb/">Ver liturgia do dia</a></div></div></section>
+<section id="bible" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Homilia do dia</h2><p class="panel-intro">Acompanhe a liturgia e os comentários espirituais de hoje.</p><div class="reading"><h3>Palavra de Deus para hoje</h3><p>Acesse o Evangelho e os comentários publicados pelas fontes católicas. A consulta requer internet; as orações permanecem disponíveis offline.</p><div class="actions"><a class="primary" href="https://www.vaticannews.va/pt/palavra-do-dia.html" target="_blank" rel="noopener">Palavra do Dia — Vatican News</a><a class="secondary" href="https://liturgia.cancaonova.com/pb/" target="_blank" rel="noopener">Liturgia diária — Canção Nova</a></div></div></section>
 <section id="personal" class="panel"><a class="back" href="inicio-azul.html">← Início</a><h2>Minhas intenções</h2><p class="panel-intro">Registre aqui pessoas, pedidos e agradecimentos. Este conteúdo fica salvo neste aparelho.</p><label>Minha intenção</label><textarea id="intentText" placeholder="Senhor, hoje quero colocar em tuas mãos..."></textarea><button class="primary" onclick="addIntent()">Guardar intenção</button><div class="section-title"><h2>Minhas anotações</h2><span class="muted">Privadas neste aparelho</span></div><div id="intentList" class="list"></div></section>
 <section id="reader" class="panel"><button class="back" onclick="backFromReader()">← Voltar</button><div id="readerContent" class="reading"></div><div class="actions"><button class="secondary" id="favoriteBtn" onclick="toggleFavorite()">☆ Salvar nos favoritos</button></div></section>
 <section id="favorites" class="panel active"><a class="back" href="inicio-azul.html">← Início</a><h2>Orações favoritas</h2><p class="panel-intro">Acesse rapidamente os textos que você guardou.</p><div id="favoriteList" class="list"></div></section>
@@ -163,7 +163,7 @@ function toast(t){let e=document.getElementById("toast");e.textContent=t;e.class
 renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();
 activatePage(window.PORTAL_PAGE || "home");
 let nv=JSON.parse(localStorage.getItem("myNovena")||"null");if(nv){document.getElementById("novenaName").value=nv.name||"";document.getElementById("novenaDay").value=nv.day||1;document.getElementById("novenaIntent").value=nv.intent||""}
-if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v9.js",{updateViaCache:"none"}).catch(()=>{}))}
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v10.js",{updateViaCache:"none"}).catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
 </script>
 
@@ -216,6 +216,15 @@ function v8AdvanceNovena(){
  const el=document.getElementById('devNovenaDay');el.value=Math.min(9,Number(el.value)+1);v8Day();v8SaveNovena();
 }
 function v8CloseNovena(){document.getElementById('novenaDetail').classList.add('hidden');document.getElementById('novenaCards').classList.remove('hidden');v8Active=null}
+const GUIDE={
+'Santo Terço mariano':['É composto de cinco dezenas, cada uma dedicada a um mistério da vida de Jesus e Maria.','Comece com o sinal da cruz, o Creio, um Pai-Nosso, três Ave-Marias e o Glória. Escolha os mistérios do dia. Para cada mistério, anuncie o acontecimento, reze um Pai-Nosso, dez Ave-Marias e um Glória. Ao terminar os cinco, reze a Salve-Rainha.'],
+'Terço da Divina Misericórdia':['É rezado nas contas de um terço comum, mas com fórmulas próprias.','Inicie com o sinal da cruz, Pai-Nosso, Ave-Maria e Creio. Em cada conta grande, reze “Eterno Pai, eu vos ofereço...”. Em cada uma das dez contas pequenas, reze “Pela sua dolorosa Paixão...”. Repita por cinco dezenas. Encerre com três vezes “Deus Santo, Deus Forte, Deus Imortal...”.'],
+'Coroa de São Miguel Arcanjo':['Tem nove saudações aos nove coros de anjos; é diferente do rosário mariano.','Faça o sinal da cruz. Para cada coro, reze um Pai-Nosso e três Ave-Marias. Depois das nove saudações, reze quatro Pai-Nossos em honra de São Miguel, Gabriel, Rafael e do Anjo da Guarda. Este roteiro é resumido e não contém todas as invocações tradicionais.'],
+'Terço das Sete Dores de Maria':['Contempla sete momentos dolorosos da vida de Maria.','Faça o sinal da cruz. Em cada uma das sete dores, medite no acontecimento, reze um Pai-Nosso e sete Ave-Marias. Repita até a sétima dor e encerre com uma oração de agradecimento.'],
+'Terço do Espírito Santo':['Roteiro adaptado sobre os sete dons do Espírito Santo.','Comece com o sinal da cruz e uma invocação ao Espírito Santo. Para cada um dos sete dons, leia o nome do dom, peça essa graça e reze um Pai-Nosso. Encerre com um Glória ao Pai.'],
+'Terço de São José':['Roteiro adaptado de cinco meditações sobre São José.','Faça o sinal da cruz e um Pai-Nosso. Em cada uma das cinco meditações, reflita sobre a virtude apresentada e reze uma Ave-Maria. Termine dizendo “São José, rogai por nós”.']
+};
+function guideHTML(title){const g=GUIDE[title];if(!g)return '';return '<div class="terco-guide"><h3>Como rezar — para iniciantes</h3><p><strong>O que é:</strong> '+g[0]+'</p><p><strong>Sequência das contas:</strong> '+g[1]+'</p><details><summary>Ver orações completas</summary>'+['Creio','Pai-Nosso','Ave-Maria','Glória ao Pai','Salve-Rainha'].map(k=>'<details><summary>'+k+'</summary><p>'+prayers[k]+'</p></details>').join('')+'</details></div>'}
 function v8OpenChaplet(i){
  const x=V8_CHAPLETS[i];if(!x)return;
  document.getElementById('chapletCards').classList.add('hidden');
@@ -231,6 +240,7 @@ function v8OpenChaplet(i){
  }else{
   container.innerHTML=x.steps.map(([heading,body])=>'<div class="v8step"><h3>'+v8Safe(heading)+'</h3><p>'+v8Safe(body)+'</p></div>').join('');
  }
+ document.getElementById('chapletReading').insertAdjacentHTML('afterbegin',guideHTML(x.title));
  document.getElementById('chapletDetail').scrollIntoView({block:'start'});
 }
 function v8RenderRosary(){
@@ -243,28 +253,4 @@ function v8RenderRosary(){
 function v8CloseChaplet(){document.getElementById('chapletDetail').classList.add('hidden');document.getElementById('chapletCards').classList.remove('hidden')}
 v8Cards();
 </script>
-<style>
-.terco-guide{border:1px solid #cbdcf0;border-radius:15px;padding:16px;margin:12px 0;background:#f4f8ff;color:#183b65;font:14px/1.65 system-ui,sans-serif}
-.terco-guide h3{font:20px Georgia,serif;margin:0 0 8px;color:#183b65}.terco-guide p{margin:7px 0}
-.terco-guide details{margin:9px 0;border:1px solid #d8e5f6;border-radius:10px;padding:10px;background:#fff}
-.terco-guide summary{cursor:pointer;font-weight:700}.terco-guide details p{white-space:pre-line}
-.terco-guide .tip{background:#e6f0ff;border-radius:10px;padding:10px;margin-top:12px}
-</style><script>
-const TERCO_GUIDES={
-"Santo Terço mariano":{intro:"O Santo Terço tem cinco dezenas. Cada dezena contempla um acontecimento da vida de Jesus e de Maria, chamado mistério. Você pode usar um terço de contas ou acompanhar a sequência na tela.",how:"Segure a cruz para fazer o sinal da cruz e rezar o Creio. Na primeira conta grande, reze um Pai-Nosso; nas três pequenas, três Ave-Marias; depois, um Glória ao Pai. Anuncie o primeiro mistério. Em cada uma das cinco dezenas: 1 Pai-Nosso na conta grande, 10 Ave-Marias nas pequenas e 1 Glória ao Pai ao terminar. Repita com os outros quatro mistérios. Finalize com a Salve-Rainha e o sinal da cruz.",tip:"Escolha os mistérios do dia no seletor abaixo. Não precisa decorar: abra as orações completas aqui mesmo."},
-"Terço da Divina Misericórdia":{intro:"É rezado normalmente em um terço comum de cinco dezenas, mas com orações diferentes das do rosário mariano.",how:"Na cruz, faça o sinal da cruz. Nas contas iniciais, reze Pai-Nosso, Ave-Maria e Creio. Na conta grande antes de cada dezena, reze a oração 'Eterno Pai'. Nas dez contas pequenas, repita dez vezes 'Pela sua dolorosa Paixão'. Faça isso em cinco dezenas. Ao final, reze três vezes 'Deus Santo, Deus Forte, Deus Imortal'.",tip:"Cada dezena tem a mesma sequência. As fórmulas completas estão no passo a passo abaixo."},
-"Coroa de São Miguel Arcanjo":{intro:"Também conhecida como Coroa Angélica, tem nove saudações aos nove coros de anjos. Seu formato de contas é diferente do terço mariano comum.",how:"Faça o sinal da cruz. Em cada uma das nove saudações, medite sobre o coro angélico indicado e reze um Pai-Nosso e três Ave-Marias. Ao terminar, reze mais quatro Pai-Nossos em honra de São Miguel, São Gabriel, São Rafael e do Anjo da Guarda.",tip:"Este roteiro apresenta a estrutura tradicional resumida. As invocações próprias de cada saudação não estão incluídas; por isso, não substitui uma edição integral da Coroa Angélica."},
-"Terço das Sete Dores de Maria":{intro:"Essa devoção contempla sete sofrimentos de Nossa Senhora, em vez dos cinco mistérios do rosário comum. O formato tradicional usa sete grupos de sete contas.",how:"Faça o sinal da cruz. Anuncie a primeira dor de Maria e medite nela. Reze um Pai-Nosso e sete Ave-Marias. Repita o mesmo para cada uma das outras seis dores. Ao final, agradeça a Deus e peça a intercessão de Maria.",tip:"Não é necessário ter um terço especial: acompanhe cada grupo na tela e conte as sete Ave-Marias."},
-"Terço do Espírito Santo":{intro:"Esta versão é um roteiro meditativo adaptado sobre os sete dons do Espírito Santo. Não existe uma única sequência universal para todas as devoções chamadas 'Terço do Espírito Santo'.",how:"Faça o sinal da cruz e peça a presença do Espírito Santo. Leia o primeiro dom, faça uma breve oração espontânea pedindo essa graça e reze um Pai-Nosso. Repita para os sete dons. Termine com um Glória ao Pai.",tip:"Use os sete passos abaixo como guia; o objetivo é meditar e rezar com calma."},
-"Terço de São José":{intro:"Esta é uma proposta devocional adaptada de cinco meditações sobre a vida e as virtudes de São José; não é a transcrição de uma coroa oficial específica.",how:"Faça o sinal da cruz, peça a intercessão de São José e reze um Pai-Nosso. Leia a primeira meditação, faça uma breve pausa e reze uma Ave-Maria. Repita para as cinco meditações. Conclua pedindo: 'São José, rogai por nós. Amém'.",tip:"Você pode rezar sem contas, usando as cinco etapas exibidas na tela."}
-};
-function tercoGuide(title){
- const d=TERCO_GUIDES[title];if(!d)return '';
- const esc=s=>String(s).replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
- return '<div class="terco-guide"><h3>Como rezar este terço</h3><p>'+esc(d.intro)+'</p><details open><summary>Passo a passo para iniciantes</summary><p>'+esc(d.how)+'</p></details><details><summary>Consultar as orações completas</summary>'+['Creio','Pai-Nosso','Ave-Maria','Glória ao Pai','Salve-Rainha'].map(k=>'<details><summary>'+esc(k)+'</summary><p>'+esc(prayers[k]||'')+'</p></details>').join('')+'</details><div class="tip">'+esc(d.tip)+'</div></div>';
-}
-// Add instructions after the existing chaplet renderer, without replacing its mysteries or steps.
-const previousV8OpenChaplet=v8OpenChaplet;
-v8OpenChaplet=function(i){previousV8OpenChaplet(i);const x=V8_CHAPLETS[i];const el=document.getElementById('chapletReading');if(el&&x)el.insertAdjacentHTML('afterbegin',tercoGuide(x.title));};
-(function initHomilia(){const el=document.getElementById('homiliaDate');if(!el)return;const now=new Date();el.textContent=new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);const y=now.getFullYear(),m=String(now.getMonth()+1).padStart(2,'0'),d=String(now.getDate()).padStart(2,'0');document.getElementById('homiliaLink').href=`https://www.vaticannews.va/pt/palavra-do-dia/${y}/${m}/${d}.html`;})();
-</script></body></html>
+</body></html>
