@@ -1,1 +1,1 @@
-Meu Refúgio v17: removido o cartão Orações aos santos da página inicial. As orações existentes permanecem no portal. Envie todos os arquivos para a raiz do repositório.
+Meu Refúgio — Versão 18. Única mudança visual: a barra inferior de navegação (Início, Orações, Terço, Intenções e Favoritas) foi incluída em todas as páginas, inclusive páginas individuais de terços e novenas. Conteúdo preservado. Envie todos os arquivos para o GitHub Pages.
