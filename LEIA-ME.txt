@@ -1,0 +1,19 @@
+MEU REFÚGIO — PORTAL DE ORAÇÕES
+
+Conteúdo:
+- index.html: portal completo (HTML, CSS e JavaScript).
+- manifest.json: configuração para instalação como PWA.
+- sw.js: cache offline.
+- icon.svg: ícone.
+
+TESTE SIMPLES:
+Abra index.html no navegador do computador ou celular. A página e as funções principais funcionam localmente. As intenções, favoritos e progresso da novena são salvos no armazenamento local do navegador.
+
+INSTALAÇÃO E USO OFFLINE COMO PWA:
+Para que a instalação na tela inicial e o cache offline funcionem de forma confiável, publique estes arquivos em um endereço HTTPS (por exemplo, GitHub Pages) ou execute em localhost. Abra o endereço uma vez com internet, aguarde carregar e use “Instalar” se o navegador oferecer essa opção. Depois disso, o service worker mantém os arquivos essenciais disponíveis offline.
+
+OBSERVAÇÕES:
+- Os dados pessoais ficam no armazenamento local do navegador/aparelho. Limpar os dados do navegador pode apagá-los.
+- Não há conta, servidor ou sincronização entre aparelhos.
+- O texto das passagens bíblicas é curto e inclui referências para leitura na Bíblia. As citações devem ser conferidas na tradução bíblica que você utiliza.
+- A novena incluída é um roteiro de oração simples e adaptável, não uma novena oficial específica.

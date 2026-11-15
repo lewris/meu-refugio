@@ -1,0 +1,16 @@
+{
+  "name": "Meu Refúgio — Portal de Orações",
+  "short_name": "Meu Refúgio",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ec",
+  "theme_color": "#243b32",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
