@@ -44,7 +44,7 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
  <div class="daily"><small>✦ Palavra para hoje</small><h2 id="dailyTitle">Permanecei no meu amor</h2><p id="dailyVerse">“Permanecei no meu amor.” — João 15,9</p><button onclick="window.location.href=\'homilia-azul.html\'">Ver homilia do dia</button></div>
  <div class="section-title"><h2>Seu momento de oração</h2><span class="muted">Escolha por onde começar</span></div>
  <div class="grid">
-  <a class="tile" href="oracoes-azul.html"><span class="ico">🙏</span><strong>Orações tradicionais</strong><span>Orações da Igreja</span></a>
+  <a class="tile" href="oracoes-atualizadas.html"><span class="ico">🙏</span><strong>Orações tradicionais</strong><span>Orações da Igreja</span></a>
   <a class="tile" href="terco-azul.html"><span class="ico">📿</span><strong>Santo Terço</strong><span>Mistérios e roteiro</span></a>
   <a class="tile" href="santos-azul.html"><span class="ico">🕊️</span><strong>Orações aos santos</strong><span>Devoções católicas</span></a>
   <a class="tile" href="novena-azul.html"><span class="ico">🕯️</span><strong>Novena</strong><span>Uma jornada de nove dias</span></a>
@@ -76,7 +76,7 @@ input,textarea,select{width:100%;border:1px solid var(--line);border-radius:11px
 </main>
 <nav class="tabs">
  <a data-tab="home" href="inicio-azul.html"><span>⌂</span>Início</a>
- <a data-tab="traditional" href="oracoes-azul.html"><span>🙏</span>Orações</a>
+ <a data-tab="traditional" href="oracoes-atualizadas.html"><span>🙏</span>Orações</a>
  <a data-tab="rosary" href="terco-azul.html"><span>📿</span>Terço</a>
  <a data-tab="personal" href="intencoes-azul.html"><span>❤️</span>Intenções</a>
  <a class="active" data-tab="favorites" href="favoritas-azul.html"><span>☆</span>Favoritas</a>
@@ -117,7 +117,7 @@ fri:["Dolorosos: a Agonia de Jesus no Horto","Dolorosos: a Flagelação de Jesus
 sat:["Gozosos: a Anunciação do Anjo a Maria","Gozosos: a Visitação de Maria a Isabel","Gozosos: o Nascimento de Jesus","Gozosos: a Apresentação de Jesus no Templo","Gozosos: a Perda e o Encontro de Jesus no Templo"]
 };
 let currentTitle="",currentText="",previousPanel="home";
-const PAGE_FILES={home:"inicio-azul.html",traditional:"oracoes-azul.html",rosary:"terco-azul.html",saints:"santos-azul.html",novena:"novena-azul.html",bible:"homilia-azul.html",personal:"intencoes-azul.html",favorites:"favoritas-azul.html"};
+const PAGE_FILES={home:"inicio-azul.html",traditional:"oracoes-atualizadas.html",rosary:"terco-azul.html",saints:"santos-azul.html",novena:"novena-azul.html",bible:"homilia-azul.html",personal:"intencoes-azul.html",favorites:"favoritas-azul.html"};
 function activatePage(id){
  const target=document.getElementById(id)||document.getElementById("home");
  document.querySelectorAll("main>section").forEach(s=>s.classList.remove("active"));
@@ -156,7 +156,7 @@ function toast(t){let e=document.getElementById("toast");e.textContent=t;e.class
 try{renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderMysteries();}catch(e){console.warn("Legacy init:",e)}
 activatePage(window.PORTAL_PAGE || "home");
 /* As novenas usam agora seu próprio sistema de progresso por devoção. */
-if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v15.js",{updateViaCache:"none"}).catch(()=>{}))}
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw-azul-v16.js",{updateViaCache:"none"}).catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
 </script>
 
