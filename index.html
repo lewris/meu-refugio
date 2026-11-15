@@ -100,8 +100,21 @@ fri:["Dolorosos: a Agonia de Jesus no Horto","Dolorosos: a Flagelação de Jesus
 sat:["Gozosos: a Anunciação do Anjo a Maria","Gozosos: a Visitação de Maria a Isabel","Gozosos: o Nascimento de Jesus","Gozosos: a Apresentação de Jesus no Templo","Gozosos: a Perda e o Encontro de Jesus no Templo"]
 };
 let currentTitle="",currentText="",previousPanel="home";
-function showHome(){document.querySelectorAll("main>section").forEach(s=>s.classList.remove("active"));document.getElementById("home").classList.add("active");document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab==="home"));window.scrollTo(0,0)}
-function showPanel(id){document.querySelectorAll("main>section").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));if(id==="personal")renderIntents();if(id==="favorites")renderFavorites();if(id==="rosary")renderMysteries();window.scrollTo(0,0)}
+function currentPage(){return new URLSearchParams(location.search).get("pagina")||"home"}
+function activatePage(id){
+ const target=document.getElementById(id)||document.getElementById("home");
+ document.querySelectorAll("main>section").forEach(s=>s.classList.remove("active"));
+ target.classList.add("active");
+ document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+ if(id==="personal")renderIntents();
+ if(id==="favorites")renderFavorites();
+ if(id==="rosary")renderMysteries();
+ window.scrollTo(0,0);
+}
+function showHome(){history.pushState({page:"home"},"",location.pathname);activatePage("home")}
+function showPanel(id){history.pushState({page:id},"","?pagina="+encodeURIComponent(id));activatePage(id)}
+window.addEventListener("popstate",()=>activatePage(currentPage()));
+
 function showReader(title,text,from){previousPanel=from||"traditional";currentTitle=title;currentText=text;document.getElementById("readerContent").innerHTML="<h3>"+escapeHtml(title)+"</h3>"+escapeHtml(text).replace(/\n/g,"<br>");updateFavButton();showPanel("reader")}
 function openPrayer(name){showReader(name,prayers[name]||saints[name]||"", "traditional")}
 function backFromReader(){showPanel(previousPanel)}
@@ -121,7 +134,7 @@ function nextNovena(){let d=Math.min(9,(Number(document.getElementById("novenaDa
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function jsq(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"")}
 function toast(t){let e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2200)}
-renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();
+renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();\nactivatePage(currentPage());
 let nv=JSON.parse(localStorage.getItem("myNovena")||"null");if(nv){document.getElementById("novenaName").value=nv.name||"";document.getElementById("novenaDay").value=nv.day||1;document.getElementById("novenaIntent").value=nv.intent||""}
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
