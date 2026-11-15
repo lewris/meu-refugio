@@ -1,9 +1,13 @@
-MEU REFÚGIO — VERSÃO 5
+MEU REFÚGIO — VERSÃO AZUL 6
 
-Navegação por links HTML reais, independente de JavaScript.
-O cache agora usa a rede primeiro para páginas, mantendo cópias offline.
+IMPORTANTE: Extraia o ZIP e envie TODOS os arquivos para a raiz do repositório GitHub.
+Não envie o arquivo ZIP sem extrair.
 
-ATUALIZAÇÃO: envie TODOS os arquivos para a raiz do repositório GitHub.
-Se a versão antiga continuar aparecendo, faça uma atualização forçada ou remova apenas os dados em cache do site (atenção: limpar todos os dados do site pode apagar suas intenções e favoritos).
+TESTE A NOVA VERSÃO SEM CACHE ANTIGO:
+https://lewris.github.io/meu-refugio/inicio-azul.html
 
-Teste diretamente: https://lewr is.github.io/meu-refugio/oracoes.html (retire o espaço de lewr is)
+As categorias agora usam links HTML reais para arquivos com nomes novos, por exemplo oracoes-azul.html. Isso contorna páginas antigas armazenadas em cache. index.html e os nomes antigos também foram atualizados para compatibilidade.
+
+O service worker v6 usa prioridade para a rede quando há conexão e mantém cópias das páginas para uso offline.
+
+Atenção: se uma instalação anterior do site continuar mostrando a versão antiga, abra o novo endereço no navegador e atualize; evite limpar dados do site sem antes copiar intenções pessoais importantes.

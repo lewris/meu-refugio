@@ -1,10 +1,10 @@
 {
-  "name": "Meu Refúgio — Portal de Orações",
+  "name": "Meu Refúgio Azul — Portal de Orações",
   "short_name": "Meu Refúgio",
-  "start_url": "./index.html",
+  "start_url": "./inicio-azul.html",
   "display": "standalone",
   "background_color": "#f7f4ec",
-  "theme_color": "#243b32",
+  "theme_color": "#17375e",
   "icons": [
     {
       "src": "icon.svg",
