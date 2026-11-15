@@ -136,7 +136,7 @@ function nextNovena(){let d=Math.min(9,(Number(document.getElementById("novenaDa
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function jsq(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"")}
 function toast(t){let e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2200)}
-renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();\nactivatePage(window.PORTAL_PAGE || "home");
+renderList("traditionalList",prayers,"traditional");renderList("saintsList",saints,"saints");renderBible();renderMysteries();activatePage(window.PORTAL_PAGE ||"home");
 let nv=JSON.parse(localStorage.getItem("myNovena")||"null");if(nv){document.getElementById("novenaName").value=nv.name||"";document.getElementById("novenaDay").value=nv.day||1;document.getElementById("novenaIntent").value=nv.intent||""}
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 let deferredPrompt;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;document.getElementById("installBtn").classList.remove("hidden")});document.getElementById("installBtn").addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById("installBtn").classList.add("hidden")});
