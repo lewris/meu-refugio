@@ -1,1 +1,1 @@
-Meu Refúgio v12: cartões de terços e novenas incluídos diretamente no HTML para aparecerem mesmo se houver falha na inicialização do JavaScript. Atualize todos os arquivos do repositório. Abra terco-azul.html e novena-azul.html para testar diretamente.
+MEU REFÚGIO V13 — Terços reformulados em HTML estático. Abra terco-azul.html. Seis terços com explicação, meditações e orações de apoio na própria página. Novenas e demais seções preservadas. Publique todos os arquivos na raiz do GitHub Pages.
